@@ -31,15 +31,3 @@ test:
         - "**/target/surefire-reports/TEST-*.xml"
         - "**/target/failsafe-reports/TEST-*.xml"
     expire_in: 1 hour
-
-sonarcloud-check:
-  cache:
-    key: "${CI_JOB_NAME}"
-    paths:
-      - .sonar/cache
-  script:
-    - mvn verify sonar:sonar -Dsonar.projectKey=wallet-wise_api-gateway
-  only:
-    - merge_requests
-    - master
-    - develop
