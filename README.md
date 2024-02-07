@@ -1,6 +1,10 @@
 # Api Gateway
 
 
+[![pipeline status](https://gitlab.com/wallet-wise/api-gateway/badges/staging/pipeline.svg)](https://gitlab.com/wallet-wise/api-gateway/-/commits/staging)
+
+
+[![coverage report](https://gitlab.com/wallet-wise/api-gateway/badges/staging/coverage.svg)](https://gitlab.com/wallet-wise/api-gateway/-/commits/staging)
 
 ## Getting started
 
