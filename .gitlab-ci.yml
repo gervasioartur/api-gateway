@@ -15,7 +15,7 @@ build:
     - mvn clean package -DskipTests
   artifacts:
     paths:
-      - target/*.jar
+      - $CI_PROJECT_DIR
 
 test:
   stage: test
