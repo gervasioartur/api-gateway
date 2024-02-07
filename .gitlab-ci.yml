@@ -18,6 +18,7 @@ build:
       - $CI_PROJECT_DIR
 
 test:
+  image: maven:3.6.3-openjdk-17
   stage: test
   script:
     - ./mvnw verify $MAVEN_OPTS
