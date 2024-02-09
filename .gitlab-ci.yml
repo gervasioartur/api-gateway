@@ -33,6 +33,8 @@ cache:
 
 build:
   stage: build
+  tags:
+  - docker
   script:
     - mvn clean package -DskipTests
   artifacts:
@@ -40,8 +42,9 @@ build:
       - $CI_PROJECT_DIR
 
 test:
-  image: maven:3.6.3-openjdk-17
   stage: test
+  tags:
+  - docker
   script:
     - ./mvnw verify $MAVEN_OPTS
     - cat target/site/jacoco/index.html | grep -o '<tfoot>.*</tfoot>'
