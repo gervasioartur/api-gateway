@@ -53,10 +53,10 @@ test:
         - "**/target/surefire-reports/TEST-*.xml"
         - "**/target/failsafe-reports/TEST-*.xml"
     expire_in: 1 hour
-    only:
-    - merge_requests
-    - master
-    - develop
+  only:
+  - merge_requests
+  - master
+  - develop
 
 
 sonarcloud-check:
