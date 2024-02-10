@@ -1,5 +1,6 @@
 package com.walletwise.apigateway.filter;
 
+import com.walletwise.apigateway.core.helper.annotations.Generated;
 import com.walletwise.apigateway.service.contract.IGetLoggedInUserEmailService;
 import com.walletwise.apigateway.service.contract.IValidateTokenService;
 import lombok.extern.slf4j.Slf4j;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
+@Generated
 public class AuthenticationFilter extends AbstractGatewayFilterFactory<AuthenticationFilter.Config> {
     @Autowired
     private RouteValidator validator;

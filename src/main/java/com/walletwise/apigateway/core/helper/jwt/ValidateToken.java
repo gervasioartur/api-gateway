@@ -1,10 +1,12 @@
 package com.walletwise.apigateway.core.helper.jwt;
 
+import com.walletwise.apigateway.core.helper.annotations.Generated;
 import com.walletwise.apigateway.core.helper.security.SingKey;
 import io.jsonwebtoken.Jwts;
 import org.springframework.stereotype.Component;
 
 @Component
+@Generated
 public class ValidateToken {
 
     public void validate(final String token) {
