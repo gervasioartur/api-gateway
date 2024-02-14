@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class ValidateTokenService implements IValidateTokenService {
-    private final ValidateToken validateToken;
+    private final ValidateToken service;
 
     @Override
     public void validate(String token) {
-        this.validateToken.validate(token);
+        this.service.validate(token);
     }
 }

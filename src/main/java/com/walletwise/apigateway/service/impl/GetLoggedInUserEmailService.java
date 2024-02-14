@@ -1,5 +1,6 @@
 package com.walletwise.apigateway.service.impl;
 
+import com.walletwise.apigateway.core.helper.annotations.Generated;
 import com.walletwise.apigateway.core.helper.security.SingKey;
 import com.walletwise.apigateway.service.contract.IGetLoggedInUserEmailService;
 import io.jsonwebtoken.Claims;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.function.Function;
 
 @Service
+@Generated
 public class GetLoggedInUserEmailService implements IGetLoggedInUserEmailService {
     @Override
     public String get(String token) {

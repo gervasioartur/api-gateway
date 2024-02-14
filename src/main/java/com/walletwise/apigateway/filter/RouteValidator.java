@@ -1,5 +1,6 @@
 package com.walletwise.apigateway.filter;
 
+import com.walletwise.apigateway.core.helper.annotations.Generated;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;
 
@@ -8,6 +9,7 @@ import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
 @Component
+@Generated
 public class RouteValidator {
 
     public static final List<String> openApiEndpoints = List.of(
