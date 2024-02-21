@@ -42,7 +42,7 @@ build:
     - docker info
   script:
     - ls
-   # - docker build -t "gervasioartur/wallet-wise_api-gateway:$IMAGE_TAG" .
+    - docker buildx -t "gervasioartur/wallet-wise_api-gateway:$IMAGE_TAG" .
    # - docker push gervasioartur/wallet-wise_api-gateway:$IMAGE_TAG
   only:
     - master
