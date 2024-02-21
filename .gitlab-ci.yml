@@ -32,7 +32,7 @@ cache:
     - target
 
 build:
-  image: ubunto:latest
+  image: ubuntu:latest
   stage: build
 
   before_script:
