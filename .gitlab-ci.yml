@@ -64,7 +64,7 @@ sonarcloud-check:
     paths:
       - .sonar/cache
   script:
-    - mvn verify sonar:sonar -Dsonar.projectKey=wallet-wise_api_gateway
+    - mvn verify sonar:sonar -Dsonar.projectKey=wallet-wise_api-gateway
   only: 
     - master
     - staging
