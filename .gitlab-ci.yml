@@ -44,14 +44,12 @@ build:
     - apt install docker-ce -y
     - export  IMAGE_TAG=`if [ $CI_COMMIT_BRANCH == "staging" ]; then echo $CI_COMMIT_SHORT_SHA; else echo $CI_COMMIT_TAG; fi;`
     - ls
-    - docker run --privileged
-    - docker load
     - ps -p 1 -o comm=
     - docker login -u "$CI_DOCKER_HUB_USER" -p "$CI_DOCKER_HUB_PASSWORD" $CI_DOCKER_HUB_URL
     - docker info
-    - sudo docker ps
+    - docker ps --privileged
   script:
-   - sudo docker push gervasioartur/wallet-wise_api-gateway:$IMAGE_TAG
+    - docker push  gervasioartur/wallet-wise_api-gateway:$IMAGE_TAG --privileged
   only:
     - master
     - staging
