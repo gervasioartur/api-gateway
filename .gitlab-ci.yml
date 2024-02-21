@@ -47,7 +47,7 @@ build:
     - ps -p 1 -o comm=
     - docker login -u "$CI_DOCKER_HUB_USER" -p "$CI_DOCKER_HUB_PASSWORD" $CI_DOCKER_HUB_URL
     - docker info
-    - docker ps --privileged
+    - docker --privileged ps 
   script:
     - docker push  gervasioartur/wallet-wise_api-gateway:$IMAGE_TAG --privileged
   only:
