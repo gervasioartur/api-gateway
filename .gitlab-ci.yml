@@ -32,28 +32,21 @@ cache:
     - target
 
 build:
-  image: ubuntu:latest
+  image: docker:latest
   stage: build
-
+  services:
+    - docker:dind
   before_script:
-    - apt update -y
-    - apt install apt-transport-https ca-certificates curl software-properties-common -y
-    - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - 
-    - add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
-    - apt-cache policy docker-ce
-    - apt install docker-ce -y
-    - export  IMAGE_TAG=`if [ $CI_COMMIT_BRANCH == "staging" ]; then echo $CI_COMMIT_SHORT_SHA; else echo $CI_COMMIT_TAG; fi;`
-    - ls
-    - ps -p 1 -o comm=
+    - export  IMAGE_TAG=`if [ $CI_COMMIT_BRANCH == "staging" ]; then echo $CI_COMMIT_SHORT_SHA; else echo $CI_COMMIT_TAG; fi;` 
     - docker login -u "$CI_DOCKER_HUB_USER" -p "$CI_DOCKER_HUB_PASSWORD" $CI_DOCKER_HUB_URL
-    - docker --version
-    - sudo docker buildx build -t gervasioartur/wallet-wise_api-gateway:$IMAGE_TAG .
-    - docker --privileged ps 
   script:
-    - docker push  gervasioartur/wallet-wise_api-gateway:$IMAGE_TAG --privileged
+    - docker build -t "gervasioartur/wallet-wise_api-gateway:$IMAGE_TAG" .
+    - docker push gervasioartur/wallet-wise_api-gateway:$IMAGE_TAG
   only:
     - master
     - staging
+  tags:
+    - build
 
 deploy:
   image: mcr.microsoft.com/azure-cli:latest
@@ -61,13 +54,11 @@ deploy:
   before_script:
     - export  IMAGE_TAG=$CI_COMMIT_SHORT_SHA
     - az login --username $AZURE_USER --password $AZURE_PASSWORD
-  script:
+  script: 
     - az aks install-cli
-    - kubectl
-    - az aks get-credentials -n wallet-wise-dev-test -g wallet-wise-dev-test --admin
+    - az account set --subscription $AKS_STAGING_CLUSTER_SUBSCRITION
+    - az aks get-credentials --resource-group $AKS_RESOURCE_GROUP --name $AKS_STAGING_CLUSTER_NAME --overwrite-existing
     - sed -i 's/<IMAGE_TAG>/'$IMAGE_TAG'/g' deployment.yml
     - kubectl apply -f deployment.yml
   only:
     - staging
-  
-  
