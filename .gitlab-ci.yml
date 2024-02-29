@@ -83,8 +83,6 @@ build:
   only:
     - master
     - staging
-  tags:
-    - build
 
 deploy:
   image: mcr.microsoft.com/azure-cli:latest
@@ -99,6 +97,4 @@ deploy:
     - sed -i 's/<IMAGE_TAG>/'$IMAGE_TAG'/g' deployment.yml
     - kubectl apply -f deployment.yml
   only:
-    - staging
-  tags:
-    - deploy
+    - master
