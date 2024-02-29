@@ -100,3 +100,5 @@ deploy:
     - kubectl apply -f deployment.yml
   only:
     - staging
+  tags:
+    - deploy
